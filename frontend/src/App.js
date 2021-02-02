@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import Navbar from "./components/navbar.component"
 import NotFoundPage from './components/NotFoundPage';
+import ExercisesList from "./components/exercises-list.component";
+import CreateExercise from "./components/create-exercise.component";
 
 function App() {
   return (
