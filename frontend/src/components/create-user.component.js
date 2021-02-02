@@ -1,60 +1,44 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-export default class CreateUser extends Component {
-  constructor(props) {
-    super(props);
+const CreateUser = (props) => {
+  
+  const [username,setUsername] = useState('');
 
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-
-    this.state = {
-      username: ''
-    }
+  const onChangeUsername = (e) => {
+    setUsername(e.target.value)
   }
 
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value
-    })
-  }
-
-  onSubmit(e) {
+  const onSubmit = (e) => {
     e.preventDefault();
 
-    const user = {
-      username: this.state.username
-    }
-
-    console.log(user);
+    const user = { username: username };
 
     axios.post('http://localhost:5000/users/add', user)
       .then(res => console.log(res.data));
 
-    this.setState({
-      username: ''
-    })
+    setUsername(''); 
   }
 
-  render() {
-    return (
-      <div>
-        <h3>Create New User</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group"> 
-            <label>Username: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                />
-          </div>
-          <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" />
-          </div>
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h3>Create New User</h3>
+      <form onSubmit={onSubmit}>
+        <div className="form-group"> 
+          <label>Username: </label>
+          <input  type="text"
+              required
+              className="form-control"
+              value={username}
+              onChange={onChangeUsername}
+              />
+        </div>
+        <div className="form-group">
+          <input type="submit" value="Create User" className="btn btn-primary" />
+        </div>
+      </form>
+    </div>
+  )
 }
+
+export default CreateUser;
