@@ -1,5 +1,10 @@
-import logo from './logo.svg';
+import React from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+
+import Navbar from "./components/navbar.component"
+import NotFoundPage from './components/NotFoundPage';
 
 function App() {
   return (
