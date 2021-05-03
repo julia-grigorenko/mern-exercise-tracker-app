@@ -19,10 +19,7 @@ const ExercisesList = () => {
     const [exercises, setExercises] = useState([]);
   
     useEffect(() => {
-      //for working localy
-      //axios.get('http://localhost:5000/exercises/')
-      //for working in a container env
-      axios.get('backend:5000/exercises/')
+      axios.get('http://localhost:5000/exercises/')
         .then(response => {
           setExercises(response.data);
         })
@@ -32,10 +29,7 @@ const ExercisesList = () => {
     },[]);
   
     const deleteExercise = (id) => {
-      //for working localy
-      //axios.delete('http://localhost:5000/exercises/'+id)
-      //for working in a container env
-      axios.delete('backend:5000/exercises/'+id)
+      axios.delete('http://localhost:5000/exercises/'+id)
         .then(response => { console.log(response.data)});
       setExercises(exercises.filter(el => el._id !== id));
     }

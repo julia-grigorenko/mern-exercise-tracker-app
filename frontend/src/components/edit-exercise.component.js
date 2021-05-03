@@ -13,10 +13,7 @@ const EditExercise = (props) => {
 
 
   useEffect(()=> {
-    //for working localy
-      //axios.get('http://localhost:5000/exercises/'+props.match.params.id)
-      //for working in a container env
-    axios.get('backend:5000/exercises/'+props.match.params.id)
+    axios.get('http://localhost:5000/exercises/'+props.match.params.id)
       .then(response => {
         setUsername(response.data.username);
         setDescription(response.data.description);
@@ -25,10 +22,7 @@ const EditExercise = (props) => {
       })
       .catch(error => console.log(error))
 
-    //for working localy
-      //axios.get('http://localhost:5000/users/')
-      //for working in a container env
-    axios.get('backend:5000/users/')
+    axios.get('http://localhost:5000/users/')
     .then(response => {
       if (response.data.length > 0) {
         setUsers(response.data.map(user => user.username));
@@ -36,8 +30,6 @@ const EditExercise = (props) => {
     })
     .catch(error => console.log(error))
   },[props.match.params.id]);
-  // console.log(users);
-
 
   const onChangeUsername = (e) => {
     setUsername(e.target.value)
@@ -65,9 +57,7 @@ const EditExercise = (props) => {
       date: date
     }
 
-    // console.log(exercise);
-
-    axios.post('backend:5000/exercises/update/' + props.match.params.id, exercise)
+    axios.post('http://localhost:5000/exercises/update/' + props.match.params.id, exercise)
       .then(res => console.log(res.data));
 
     window.location = '/';
@@ -80,8 +70,6 @@ const EditExercise = (props) => {
         <div className="form-group"> 
           <label>Username: </label>
           <select 
-              // ref="userInput"
-              required
               className="form-control"
               value={username}
               onChange={onChangeUsername}
