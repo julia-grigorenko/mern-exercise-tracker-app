@@ -1,4 +1,4 @@
-##demo app - developing with Docker
+## demo app - developing with Docker
 
 This demo app shows a simple exersice tracker. It keeps track of sport exersices user have already done. It allows to create users and users can create exercises.
 
