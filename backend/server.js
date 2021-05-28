@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./db');
+
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 

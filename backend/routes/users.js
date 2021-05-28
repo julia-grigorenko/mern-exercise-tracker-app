@@ -1,30 +1,12 @@
 const router = require('express').Router();
-let User = require('../models/user.model');
+const UserCtrl = require('../controllers/user-ctrl.js');
 
-router.route('/').get((req, res) => {
-  User.find()
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+router.get('/', UserCtrl.getUsers);
+router.post('/add', UserCtrl.addUser);
+router.get('/:id', UserCtrl.getUser);
+router.delete('/:id', UserCtrl.deleteUser);
+router.post('/update/:id', UserCtrl.updateUser);
 
-router.route('/add').post((req, res) => {
-  const username = req.body.username;
 
-  const newUser = new User({username});
-
-  newUser.save()
-    .then(() => res.json('User added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/test').post((req, res) => {
-  const username = 'test';
-
-  const newUser = new User({username});
-
-  newUser.save()
-    .then(() => res.json('User added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
 
 module.exports = router;

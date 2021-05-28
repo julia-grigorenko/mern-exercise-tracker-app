@@ -16,9 +16,13 @@ const mongoClientOptions = {
 
 mongoose
     .connect(uri, mongoClientOptions)
+    .then((response) => {
+        console.log('Connected to the database: ' + mongoClientOptions.dbName);
+        return response;
+    })
     .catch(e => {
         console.error('Connection error: ', e.message)
-    })
+    });
 
 const db = mongoose.connection;
 
