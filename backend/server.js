@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
+const db = require('./db');
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 
@@ -13,18 +13,8 @@ app.use(express.json());
 
 const port = process.env.PORT || 5000;
 
-const uri = "mongodb://admin:password@mongo";
-let databaseName = "mern-exercise-tracker";
-let mongoClientOptions = { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true,
-  dbName: databaseName};
-mongoose.connect(uri, mongoClientOptions);
-  const connection = mongoose.connection;
-  connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-  })
-
-  app.use('/exercises', exercisesRouter);
-  app.use('/users', usersRouter);
+app.use('/exercises', exercisesRouter);
+app.use('/users', usersRouter);
 
 
 app.listen(port, () => {
