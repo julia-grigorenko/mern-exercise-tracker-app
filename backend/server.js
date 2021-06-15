@@ -1,5 +1,6 @@
 const express = require('express');
-const Logger = require('./lib/logger.js');
+const logger = require('./lib/logger.js');
+const morganMiddleware = require('./lib/morganMiddleware.js');
 const cors = require('cors');
 const db = require('./db');
 
@@ -14,12 +15,15 @@ app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 5000;
+
+app.use(morganMiddleware);
+//to test logger functionality
 app.get("/logger", (req, res) => {
-    Logger.error("This is an error log");
-    Logger.warn("This is a warn log");
-    Logger.info("This is a info log");
-    Logger.http("This is a http log");
-    Logger.debug("This is a debug log");
+    logger.error("This is an error log");
+    logger.warn("This is a warn log");
+    logger.info("This is a info log");
+    logger.http("This is a http log");
+    logger.debug("This is a debug log");
   
     res.send("Hello world");
   });
@@ -29,5 +33,5 @@ app.use('/users', usersRouter);
 
 
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
+    logger.info(`Server is running on port: ${port}`);
 });

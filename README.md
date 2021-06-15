@@ -6,8 +6,11 @@ This demo app shows a simple exersice tracker. It keeps track of sport exersices
 * Nodejs backend with express module
 * Mongodb for data storage
 * Winston for logging
+* Morgan for customize request logs.
 
-Logger shows logs using different colors based on their severity, and another important feature is that all these logs are also printed out inside the all.log and error.log files under the logs directory.
+  Logger shows logs using different colors based on their severity, and another important feature is that all these logs are also printed out inside the `all.log` and `error.log` files under the logs directory. Winston allows to change the log severity at runtime by using an ENV variable.
+  Morgan is a NodeJS middleware that is needed to customize request logs.
+
 
 All components are docker-based
 

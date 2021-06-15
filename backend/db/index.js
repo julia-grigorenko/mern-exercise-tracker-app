@@ -1,3 +1,4 @@
+const logger = require('../lib/logger.js');
 const mongoose = require('mongoose');
 
 //for using with docker containers
@@ -17,19 +18,19 @@ const mongoClientOptions = {
 mongoose
     .connect(uri, mongoClientOptions)
     .then((response) => {
-        console.log('Connected to the database: ' + mongoClientOptions.dbName);
+        logger.info('Connected to the database: ' + mongoClientOptions.dbName);
         return response;
     })
     .catch(e => {
-        console.error('Connection error: ', e.message)
+        logger.error('Connection error: ', e.message)
     });
 
 const db = mongoose.connection;
 
 db.once('open', () => {
-        console.log("MongoDB database connection established successfully")
+    logger.info("MongoDB database connection established successfully")
    })
-  .on('error', console.error.bind(console, 'MongoDB connection error:'))
+  .on('error', logger.error.bind(console, 'MongoDB connection error:'))
 
 
 module.exports = db;
