@@ -5,6 +5,9 @@ This demo app shows a simple exersice tracker. It keeps track of sport exersices
 * React frontend
 * Nodejs backend with express module
 * Mongodb for data storage
+* Winston for logging
+
+Logger shows logs using different colors based on their severity, and another important feature is that all these logs are also printed out inside the all.log and error.log files under the logs directory.
 
 All components are docker-based
 
