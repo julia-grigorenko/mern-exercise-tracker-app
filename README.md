@@ -15,7 +15,7 @@ Step 1: Run docker-compose up -d to build images and spin up the containers with
     docker-compose up -d
 
 Step 2: Get accsess to  
-* React app on http://localhost:3000/
+* React app on http://localhost:3001/
 * Node.js backend on http://localhost:5000/
 * Mongo-express UI on http://localhost:8081/
 
