@@ -1,20 +1,20 @@
 const logger = require('../lib/logger.js');
 const mongoose = require('mongoose');
+const dbname = process.env.MONGO_DB
+const user = process.env.MONGO_DB_USERNAME
+const password = process.env.MONGO_DB_PWD
 
 //for using with docker containers
-//const uri = "mongodb://admin:password@mongo";
 
 //for using on localhost
-const uri = "mongodb://localhost:27017";
-
-const databaseName = "mern-exercise-tracker";
+const uri = `mongodb://${user}:${password}@mongo:27017/${dbname}`;
+//const databaseName = "mern-exercise-tracker";
 const mongoClientOptions = { 
         useNewUrlParser: true, 
         useCreateIndex: true, 
         useUnifiedTopology: true,
-        dbName: databaseName
+        dbName: dbname
     };
-
 mongoose
     .connect(uri, mongoClientOptions)
     .then((response) => {
